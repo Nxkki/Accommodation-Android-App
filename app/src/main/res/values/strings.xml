@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Accommodation</string>
+    <string name="button_addAccommodation">Add Accommodation</string>
+    <string name="hint_accommodationLocation">Accommodation Location</string>
+
 </resources>
+
