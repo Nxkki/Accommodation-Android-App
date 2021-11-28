@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Accommodation">
         <activity
-            android:name=".AccommodationActivity"
+            android:name=".activities.AccommodationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
