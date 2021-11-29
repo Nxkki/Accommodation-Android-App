@@ -12,6 +12,8 @@ class AccommodationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAccommodationBinding
     var accommodation = AccommodationModel()
+    val accommodations = ArrayList<AccommodationModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,38 +26,47 @@ class AccommodationActivity : AppCompatActivity() {
         i("Accommodation Activity started...")
 
         binding.btnAdd.setOnClickListener() {
-            var accommodationPrice:Int = 0
+//            var accommodationPrice:Int = 0
+            accommodation.price = 0
             if (binding.accommodationPrice.text.toString().isNotEmpty())
-                accommodationPrice = Integer.parseInt(binding.accommodationPrice.text.toString())
-            val accommodationLocation = binding.accommodationLocation.text.toString()
-            val accommodationRooms = binding.accommodationRooms.text.toString()
-
-            if (accommodationPrice>0 ) {
-                i("add Button Pressed: $accommodationLocation")
+                accommodation.price = Integer.parseInt(binding.accommodationPrice.text.toString())
+            accommodation.location = binding.accommodationLocation.text.toString()
+            accommodation.rooms = binding.accommodationRooms.text.toString()
+var flag=true
+            if (accommodation.price>0 ) {
+//                accommodations.add(accommodation)
+                i("add Button Pressed: ${accommodation.price}")
             }
             else {
+                flag =false
                 Snackbar
                     .make(it,"Please Enter a price", Snackbar.LENGTH_LONG)
                     .show()
             }
-            if (accommodationLocation.isNotEmpty() ) {
-                i("add Button Pressed: $accommodationLocation")
+            if (accommodation.location.isNotEmpty() ) {
+                i("add Button Pressed: ${accommodation}")
             }
             else {
+                flag = false
                 Snackbar
                     .make(it,"Please Enter a location", Snackbar.LENGTH_LONG)
                     .show()
             }
-            if (accommodationRooms.isNotEmpty()){
-                i("add Button Pressed: $accommodationRooms")
+            if (accommodation.rooms.isNotEmpty()){
+                i("add Button Pressed: ${accommodation}")
 
             }
             else {
+                flag=false
                 Snackbar
                     .make(it,"Please Enter a rooms", Snackbar.LENGTH_LONG)
                     .show()
             }
-
+        if(flag)
+            accommodations.add(accommodation)
+            for (i in accommodations.indices)
+            { i("Accommodation[$i]:${this.accommodations[i]}") }
         }
+
     }
 }
