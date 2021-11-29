@@ -18,22 +18,24 @@ class AccommodationActivity : AppCompatActivity() {
 
         binding = ActivityAccommodationBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.accommodationPrice.setText("0")
         Timber.plant(Timber.DebugTree())
 
         i("Accommodation Activity started...")
 
         binding.btnAdd.setOnClickListener() {
-           val accommodationPrice = Integer.parseInt(binding.accommodationPrice.text.toString())
+            var accommodationPrice:Int = 0
+            if (binding.accommodationPrice.text.toString().isNotEmpty())
+                accommodationPrice = Integer.parseInt(binding.accommodationPrice.text.toString())
             val accommodationLocation = binding.accommodationLocation.text.toString()
             val accommodationRooms = binding.accommodationRooms.text.toString()
 
-            if (accommodationPrice.equals(0) ) {
+            if (accommodationPrice>0 ) {
                 i("add Button Pressed: $accommodationLocation")
             }
             else {
                 Snackbar
-                    .make(it,"Please Enter a location", Snackbar.LENGTH_LONG)
+                    .make(it,"Please Enter a price", Snackbar.LENGTH_LONG)
                     .show()
             }
             if (accommodationLocation.isNotEmpty() ) {
