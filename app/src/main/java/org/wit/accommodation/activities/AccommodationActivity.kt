@@ -1,4 +1,4 @@
-package org.wit.placemark.activities
+package org.wit.accommodation.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -24,15 +24,36 @@ class AccommodationActivity : AppCompatActivity() {
         i("Accommodation Activity started...")
 
         binding.btnAdd.setOnClickListener() {
-            accommodation.location = binding.accommodationLocation.text.toString()
-            if (accommodation.location.isNotEmpty()) {
-                i("add Button Pressed: $accommodation.location")
+           val accommodationPrice = Integer.parseInt(binding.accommodationPrice.text.toString())
+            val accommodationLocation = binding.accommodationLocation.text.toString()
+            val accommodationRooms = binding.accommodationRooms.text.toString()
+
+            if (accommodationPrice.equals(0) ) {
+                i("add Button Pressed: $accommodationLocation")
             }
             else {
                 Snackbar
                     .make(it,"Please Enter a location", Snackbar.LENGTH_LONG)
                     .show()
             }
+            if (accommodationLocation.isNotEmpty() ) {
+                i("add Button Pressed: $accommodationLocation")
+            }
+            else {
+                Snackbar
+                    .make(it,"Please Enter a location", Snackbar.LENGTH_LONG)
+                    .show()
+            }
+            if (accommodationRooms.isNotEmpty()){
+                i("add Button Pressed: $accommodationRooms")
+
+            }
+            else {
+                Snackbar
+                    .make(it,"Please Enter a rooms", Snackbar.LENGTH_LONG)
+                    .show()
+            }
+
         }
     }
 }
