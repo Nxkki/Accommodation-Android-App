@@ -2,7 +2,10 @@ package org.wit.accommodation.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
+import org.wit.accommodation.R
 import org.wit.accommodation.databinding.ActivityAccommodationBinding
 import org.wit.accommodation.main.MainApp
 import org.wit.accommodation.models.AccommodationModel
@@ -18,6 +21,9 @@ class AccommodationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAccommodationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbarAdd.title = title
+        setSupportActionBar(binding.toolbarAdd)
+
         binding.accommodationPrice.setText("0")
 
         app = application as MainApp
@@ -66,15 +72,32 @@ var flag=true
                     .make(it,"Please Enter a rooms", Snackbar.LENGTH_LONG)
                     .show()
             }
-        if(flag)
-           app.accommodations.add(accommodation.copy())
-            for (i in app.accommodations.indices) {
-                i("Accommodation[$i]:${this.app.accommodations[i]}")
-            }
-                setResult(RESULT_OK)
-                finish()
+        if(flag) {
+            app.accommodations.create(accommodation.copy())
+            setResult(RESULT_OK)
+            finish()
+
+
+        }
+//            for (i in app.accommodations.indices) {
+//                i("Accommodation[$i]:${this.app.accommodations[i]}")
+//            }
+
         }
 
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_accommodation, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_cancel -> {
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
