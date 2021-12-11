@@ -10,8 +10,10 @@ import org.wit.accommodation.R
 import org.wit.accommodation.databinding.ActivityAccommodationListBinding
 import org.wit.accommodation.main.MainApp
 import org.wit.accommodation.adapters.AccommodationAdapter
+import org.wit.accommodation.adapters.AccommodationListener
+import org.wit.accommodation.models.AccommodationModel
 
-class AccommodationListActivity : AppCompatActivity() {
+class AccommodationListActivity : AppCompatActivity(), AccommodationListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityAccommodationListBinding
@@ -28,7 +30,8 @@ class AccommodationListActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
 //        binding.recyclerView.adapter = AccommodationAdapter(app.accommodations)
-        binding.recyclerView.adapter = AccommodationAdapter(app.accommodations.findAll())
+//        binding.recyclerView.adapter = AccommodationAdapter(app.accommodations.findAll())
+        binding.recyclerView.adapter = AccommodationAdapter(app.accommodations.findAll(),this)
 
 
     }
@@ -47,6 +50,11 @@ class AccommodationListActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+    override fun onAccommodationClick(placemark: AccommodationModel) {
+        val launcherIntent = Intent(this, AccommodationActivity::class.java)
+        startActivityForResult(launcherIntent,0)
+    }
+
 }
 //class AccommodationAdapter constructor(private var accommodations: List<AccommodationModel>) :
 //    RecyclerView.Adapter<AccommodationAdapter.MainHolder>() {
