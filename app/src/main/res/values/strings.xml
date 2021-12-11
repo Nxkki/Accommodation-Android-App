@@ -4,5 +4,6 @@
     <string name="hint_accommodationPrice">Accommodation Price</string>
     <string name="hint_accommodationLocation">Accommodation Location</string>
     <string name="hint_accommodationRooms">Accommodation Rooms</string>
+    <string name="menu_addAccommodation">Add</string>
 </resources>
 

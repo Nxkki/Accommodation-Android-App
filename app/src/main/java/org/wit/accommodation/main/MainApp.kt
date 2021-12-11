@@ -13,5 +13,9 @@ class MainApp : Application() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
         i("Accommodation started")
+//        accommodations.add(AccommodationModel(10, "About one...", "6rms"))
+//        accommodations.add(AccommodationModel(2, "About two...", "2rms"))
+//        accommodations.add(AccommodationModel(3, "About three...", "3rms"))
+
     }
 }

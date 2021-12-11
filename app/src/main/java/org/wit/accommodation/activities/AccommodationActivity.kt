@@ -68,8 +68,11 @@ var flag=true
             }
         if(flag)
            app.accommodations.add(accommodation.copy())
-            for (i in app.accommodations.indices)
-            { i("Accommodation[$i]:${this.app.accommodations[i]}") }
+            for (i in app.accommodations.indices) {
+                i("Accommodation[$i]:${this.app.accommodations[i]}")
+            }
+                setResult(RESULT_OK)
+                finish()
         }
 
         }
