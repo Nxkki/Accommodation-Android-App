@@ -1,5 +1,15 @@
 package org.wit.accommodation.models
+
+
 import timber.log.Timber.i
+
+
+
+var lastId = 0L
+
+internal fun getId(): Long {
+    return lastId++
+}
 
 class AccommodationMemStore : AccommodationStore {
 
@@ -10,11 +20,22 @@ class AccommodationMemStore : AccommodationStore {
     }
 
     override fun create(accommodation: AccommodationModel) {
+        accommodation.id = getId()
         accommodations.add(accommodation)
         logAll()
     }
 
-    fun logAll() {
-        accommodations.forEach{ i("${it}") }
+    override fun update(accommodation: AccommodationModel) {
+        var foundAccommodation: AccommodationModel? = accommodations.find { p -> p.id == accommodation.id }
+        if (foundAccommodation != null) {
+            foundAccommodation.price = accommodation.price
+            foundAccommodation.location = accommodation.location
+            foundAccommodation.rooms = accommodation.rooms
+            logAll()
+        }
+    }
+
+    private fun logAll() {
+        accommodations.forEach { i("$it") }
     }
 }

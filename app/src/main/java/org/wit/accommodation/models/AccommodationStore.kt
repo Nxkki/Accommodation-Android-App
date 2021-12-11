@@ -4,4 +4,6 @@ interface AccommodationStore {
 
     fun findAll(): List<AccommodationModel>
     fun create(accommodation: AccommodationModel)
+    fun update(accommodation: AccommodationModel)
+
 }
