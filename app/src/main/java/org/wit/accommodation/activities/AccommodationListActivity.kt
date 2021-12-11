@@ -50,11 +50,11 @@ class AccommodationListActivity : AppCompatActivity(), AccommodationListener {
         }
         return super.onOptionsItemSelected(item)
     }
-    override fun onAccommodationClick(placemark: AccommodationModel) {
+    override fun onAccommodationClick(accommodation: AccommodationModel) {
         val launcherIntent = Intent(this, AccommodationActivity::class.java)
+        launcherIntent.putExtra("accommodation_edit", accommodation)
         startActivityForResult(launcherIntent,0)
     }
-
 }
 //class AccommodationAdapter constructor(private var accommodations: List<AccommodationModel>) :
 //    RecyclerView.Adapter<AccommodationAdapter.MainHolder>() {

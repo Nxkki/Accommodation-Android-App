@@ -8,6 +8,8 @@ import timber.log.Timber.i
 
 class MainApp : Application() {
 
+//    listActi:
+//    theres a line through accommodationClick
 //    val accommodations = ArrayList<AccommodationModel>()
 val accommodations = AccommodationMemStore()
 

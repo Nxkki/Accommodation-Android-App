@@ -28,7 +28,16 @@ class AccommodationActivity : AppCompatActivity() {
 
         app = application as MainApp
         i("Accommodation Activity started...")
+        if (intent.hasExtra("accommodation_edit")) {
+            accommodation = intent.extras?.getParcelable("accommodation_edit")!!
 
+//            binding.accommodationPrice.setText(String.valueOf(accommodation.price))
+//            setText(accommodation.price)
+            binding.accommodationPrice.setText("" + accommodation.price)
+            binding.accommodationLocation.setText(accommodation.location)
+            binding.accommodationRooms.setText(accommodation.rooms)
+
+        }
         binding.btnAdd.setOnClickListener() {
             var accommodationPrice:Int = 0
             if (binding.accommodationPrice.text.toString().isNotEmpty())
