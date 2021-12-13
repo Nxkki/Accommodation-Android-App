@@ -36,6 +36,12 @@ class AccommodationListActivity : AppCompatActivity(), AccommodationListener {
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        binding.recyclerView.adapter?.notifyDataSetChanged()
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
@@ -55,6 +61,7 @@ class AccommodationListActivity : AppCompatActivity(), AccommodationListener {
         launcherIntent.putExtra("accommodation_edit", accommodation)
         startActivityForResult(launcherIntent,0)
     }
+
 }
 //class AccommodationAdapter constructor(private var accommodations: List<AccommodationModel>) :
 //    RecyclerView.Adapter<AccommodationAdapter.MainHolder>() {

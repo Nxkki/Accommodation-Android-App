@@ -6,6 +6,9 @@
     <string name="hint_accommodationRooms">Accommodation Rooms</string>
     <string name="menu_addAccommodation">Add</string>
     <string name="menu_cancelAccommodation">Cancel</string>
+    <string name="enter_accommodation_price">A value for Accommodation is missing....Please Fill It In </string>
+    <string name="save_accommodation"> Save Accommodation </string>
+
 
 </resources>
 
