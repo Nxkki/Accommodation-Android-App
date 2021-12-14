@@ -1,14 +1,20 @@
 package org.wit.accommodation.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import org.wit.accommodation.R
 import org.wit.accommodation.databinding.ActivityAccommodationBinding
+import org.wit.accommodation.helpers.showImagePicker
 import org.wit.accommodation.main.MainApp
 import org.wit.accommodation.models.AccommodationModel
 import timber.log.Timber
@@ -16,6 +22,9 @@ import timber.log.Timber.i
 
 class AccommodationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAccommodationBinding
+    private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+    val IMAGE_ADD = 1
+
     var accommodation = AccommodationModel()
     var edit = false
 
@@ -35,16 +44,21 @@ class AccommodationActivity : AppCompatActivity() {
         i("Accommodation Activity started...")
         if (intent.hasExtra("accommodation_edit")) {
              edit = true
-
             accommodation = intent.extras?.getParcelable("accommodation_edit")!!
-
 //            binding.accommodationPrice.setText(String.valueOf(accommodation.price))
 //            setText(accommodation.price)
             binding.accommodationPrice.setText("" + accommodation.price)
             binding.accommodationLocation.setText(accommodation.location)
             binding.accommodationRooms.setText(accommodation.rooms)
+
+//            binding.accommodationImage.isVisible
+//            i("adding image ")
+//            i(accommodation.image.toString())
             binding.btnAdd.setText(R.string.save_accommodation)
 
+            Picasso.get()
+                .load(accommodation.image)
+                .into(binding.accommodationImage)
         }
         binding.btnAdd.setOnClickListener() {
             var accommodationPrice: Int = 0
@@ -93,45 +107,38 @@ class AccommodationActivity : AppCompatActivity() {
             }
 
 
+        }
 
+
+        binding.chooseImage.setOnClickListener {
+//            showImagePicker(imageIntentLauncher)
+            showImagePicker(this,IMAGE_ADD)
+            //  i("Select image")
         }
 
 
 
+    }
 
-//                }
-                //                else {
-//                    Snackbar
-//                        .make(it, R.string.enter_accommodation_price, Snackbar.LENGTH_LONG)
-//                        .show()
-//
-//                }
-//            if (accommodationLocation.isNotEmpty() ) {
-//                i("add Button Pressed: $accommodationLocation")
-//            }
-//            else {
-//                Snackbar
-//                    .make(it,R.string.enter_accommodation_location, Snackbar.LENGTH_LONG)
-//                    .show()
-//
-//            }
-//            if (accommodationRooms.isNotEmpty()){
-//                i("add Button Pressed: $accommodationRooms")
-//
-//            }
-//            else {
-//                Snackbar
-//                    .make(it,R.string.enter_accommodation_room, Snackbar.LENGTH_LONG)
-//                    .show()
-//
-//            }
-//        if(flag) {
-//            app.accommodations.create(accommodation.copy())
-//            setResult(RESULT_OK)
-//            finish()
-//
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            IMAGE_ADD -> {
+                //if user has chosen something
+                if (data != null) {
+                    i(data.getData().toString())
+                    accommodation.image = data.data!!
+                     i(accommodation.image.toString())
+                    Picasso.get()
+                        .load(accommodation.image.toString())
+                        .into(binding.accommodationImage)
+                }
             }
+
+        }
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_accommodation, menu)
@@ -146,28 +153,3 @@ class AccommodationActivity : AppCompatActivity() {
     }
         }
 
-//            for (i in app.accommodations.indices) {
-//                i("Accommodation[$i]:${this.app.accommodations[i]}")
-//            }
-
-//        }
-
-
-
-
-
-//    }
-
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        menuInflater.inflate(R.menu.menu_accommodation, menu)
-//        return super.onCreateOptionsMenu(menu)
-//    }
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            R.id.item_cancel -> {
-//                finish()
-//            }
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
-//}
