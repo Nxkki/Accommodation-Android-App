@@ -31,9 +31,12 @@ class AccommodationMemStore : AccommodationStore {
             foundAccommodation.price = accommodation.price
             foundAccommodation.location = accommodation.location
             foundAccommodation.rooms = accommodation.rooms
+            foundAccommodation.image = accommodation.image
+
             logAll()
         }
     }
+
 
     private fun logAll() {
         accommodations.forEach { i("$it") }

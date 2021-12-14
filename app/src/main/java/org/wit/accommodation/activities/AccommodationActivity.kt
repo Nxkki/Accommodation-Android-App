@@ -1,6 +1,7 @@
 package org.wit.accommodation.activities
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -59,6 +60,9 @@ class AccommodationActivity : AppCompatActivity() {
             Picasso.get()
                 .load(accommodation.image)
                 .into(binding.accommodationImage)
+            if (accommodation.image != Uri.EMPTY) {
+                binding.chooseImage.setText(R.string.change_accommodation_image)
+            }
         }
         binding.btnAdd.setOnClickListener() {
             var accommodationPrice: Int = 0
@@ -133,6 +137,8 @@ class AccommodationActivity : AppCompatActivity() {
                     Picasso.get()
                         .load(accommodation.image.toString())
                         .into(binding.accommodationImage)
+                    binding.chooseImage.setText(R.string.change_accommodation_image)
+
                 }
             }
 

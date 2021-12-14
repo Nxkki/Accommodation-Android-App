@@ -10,5 +10,6 @@
     <string name="save_accommodation"> Save Accommodation </string>
     <string name="button_addImage"> Add Image </string>
     <string name="select_accommodation_image">Select Accommodation image</string>
+    <string name="change_accommodation_image">Change Accommodation image</string>
 </resources>
 

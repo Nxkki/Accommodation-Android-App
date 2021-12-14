@@ -4,6 +4,7 @@ package org.wit.accommodation.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import org.wit.accommodation.databinding.CardAccommodationBinding
 import org.wit.accommodation.models.AccommodationModel
 
@@ -30,8 +31,9 @@ class AccommodationAdapter constructor(private var accommodations: List<Accommod
 
         fun bind(accommodation: AccommodationModel, listener: AccommodationListener) {
             binding.accommodationLocation.text = accommodation.location
-            binding.rooms.text = accommodation.rooms
+            binding.accommodationRooms.text = accommodation.rooms
             binding.accommodationPrice.text =  Integer.toString(accommodation.price)
+            Picasso.get().load(accommodation.image).resize(200,200).into(binding.imageIcon)
 
             binding.root.setOnClickListener { listener.onAccommodationClick(accommodation) }
         }
