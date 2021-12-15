@@ -32,7 +32,9 @@ class AccommodationMemStore : AccommodationStore {
             foundAccommodation.location = accommodation.location
             foundAccommodation.rooms = accommodation.rooms
             foundAccommodation.image = accommodation.image
-
+            foundAccommodation.lat = accommodation.lat
+            foundAccommodation.lng = accommodation.lng
+            foundAccommodation.zoom = accommodation.zoom
             logAll()
         }
     }

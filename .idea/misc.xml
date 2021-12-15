@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/layout/activity_accommodation.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_accommodation_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_map.xml" value="0.1" />
         <entry key="app/src/main/res/layout/card_accommodation.xml" value="0.10526315789473684" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu_placemark.xml" value="0.1" />

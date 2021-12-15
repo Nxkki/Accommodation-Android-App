@@ -33,7 +33,7 @@ class AccommodationListActivity : AppCompatActivity(), AccommodationListener {
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = AccommodationAdapter(app.accommodations.findAll(),this)
-
+        loadAccommodations()
         registerRefreshCallback()
     }
 
@@ -61,6 +61,15 @@ class AccommodationListActivity : AppCompatActivity(), AccommodationListener {
     private fun registerRefreshCallback() {
         refreshIntentLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-            { binding.recyclerView.adapter?.notifyDataSetChanged() }
+            { loadAccommodations() }
+    }
+
+    private fun loadAccommodations() {
+        showAccommodations(app.accommodations.findAll())
+    }
+
+    fun showAccommodations (accommodations: List<AccommodationModel>) {
+        binding.recyclerView.adapter = AccommodationAdapter(accommodations, this)
+        binding.recyclerView.adapter?.notifyDataSetChanged()
     }
 }

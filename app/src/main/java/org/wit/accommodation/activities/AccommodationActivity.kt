@@ -18,16 +18,20 @@ import org.wit.accommodation.databinding.ActivityAccommodationBinding
 import org.wit.accommodation.helpers.showImagePicker
 import org.wit.accommodation.main.MainApp
 import org.wit.accommodation.models.AccommodationModel
+import org.wit.accommodation.models.OnMap
 import timber.log.Timber
 import timber.log.Timber.i
 
 class AccommodationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAccommodationBinding
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
+
     val IMAGE_ADD = 1
 
     var accommodation = AccommodationModel()
     var edit = false
+//    var location = OnMap(52.245696, -7.139102, 15f)
 
     lateinit var app  : MainApp
 
@@ -120,11 +124,69 @@ class AccommodationActivity : AppCompatActivity() {
             //  i("Select image")
         }
 
+//        binding.accommodationOnMap.setOnClickListener {
+//            i ("Set Location Pressed")
+//        }
+//        binding.accommodationOnMap.setOnClickListener {
+//            val launcherIntent = Intent(this, MapActivity::class.java)
+//            mapIntentLauncher.launch(launcherIntent)
+//        }
+//
+//        binding.accommodationOnMap.setOnClickListener {
+//            //c
+//            val location = OnMap(52.245696, -7.139102, 15f)
+//
+//            val location2 = OnMap(location.lat, location.lng, 15f)
+//            val launcherIntent = Intent(this, MapActivity::class.java)
+//                .putExtra("location", location2)
+//            mapIntentLauncher.launch(launcherIntent)
+//        }
+        binding.accommodationOnMap.setOnClickListener {
+            val location = OnMap(52.245696, -7.139102, 15f)
+            if (accommodation.zoom != 0f) {
+                location.lat =  accommodation.lat
+                location.lng = accommodation.lng
+                location.zoom = accommodation.zoom
+            }
+            val launcherIntent = Intent(this, MapActivity::class.java)
+                .putExtra("location", location)
+            mapIntentLauncher.launch(launcherIntent)
+        }
 
+
+
+
+//        binding.accommodationOnMap.setOnClickListener {
+//            val launcherIntent = Intent(this, MapActivity::class.java)
+//                .putExtra("onMap", onMap)
+//            mapIntentLauncher.launch(launcherIntent)
+//        }
+
+        registerMapCallback()
 
     }
 
 
+
+    private fun registerMapCallback() {
+        mapIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when (result.resultCode) {
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got OnMap ${result.data.toString()}")
+                            val location = result.data!!.extras?.getParcelable<OnMap>("location")!!
+                            i("OnMap == $location")
+                            accommodation.lat = location.lat
+                            accommodation.lng = location.lng
+                            accommodation.zoom = location.zoom
+                        } // end of if
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {

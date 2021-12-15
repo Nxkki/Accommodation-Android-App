@@ -1,8 +1,10 @@
 package org.wit.accommodation.main
 
 import android.app.Application
+import org.wit.accommodation.models.AccommodationJSONStore
 import org.wit.accommodation.models.AccommodationMemStore
 import org.wit.accommodation.models.AccommodationModel
+import org.wit.accommodation.models.AccommodationStore
 import timber.log.Timber
 import timber.log.Timber.i
 
@@ -11,15 +13,14 @@ class MainApp : Application() {
 //    listActi:
 //    theres a line through accommodationClick
 //    val accommodations = ArrayList<AccommodationModel>()
-val accommodations = AccommodationMemStore()
+//val accommodations = AccommodationMemStore()
+lateinit var accommodations: AccommodationStore
 
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-        i("Accommodation started")
-//        accommodations.add(AccommodationModel(10, "About one...", "6rms"))
-//        accommodations.add(AccommodationModel(2, "About two...", "2rms"))
-//        accommodations.add(AccommodationModel(3, "About three...", "3rms"))
+        accommodations = AccommodationJSONStore(applicationContext)
 
+        i("Accommodation started")
     }
 }
