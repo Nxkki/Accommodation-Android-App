@@ -39,8 +39,20 @@ class AccommodationMemStore : AccommodationStore {
         }
     }
 
+    override fun delete(accommodation: AccommodationModel) {
+        accommodations.remove(accommodation)
+    }
 
     private fun logAll() {
         accommodations.forEach { i("$it") }
+    }
+
+    override fun findOne(id: Long) : AccommodationModel? {
+        var foundAccommodation: AccommodationModel? = accommodations.find { p -> p.id == id }
+        return foundAccommodation
+    }
+    override fun findPrice (price: Int) : AccommodationModel? {
+        var foundAccommodation: AccommodationModel? = accommodations.find { p -> p.price == price }
+        return foundAccommodation
     }
 }

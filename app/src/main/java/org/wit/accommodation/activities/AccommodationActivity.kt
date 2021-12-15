@@ -141,6 +141,7 @@ class AccommodationActivity : AppCompatActivity() {
 //                .putExtra("location", location2)
 //            mapIntentLauncher.launch(launcherIntent)
 //        }
+
         binding.accommodationOnMap.setOnClickListener {
             val location = OnMap(52.245696, -7.139102, 15f)
             if (accommodation.zoom != 0f) {
@@ -216,8 +217,14 @@ class AccommodationActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_cancel -> { finish() }
-        }
+
+            R.id.item_delete -> {
+                app.accommodations.delete(accommodation.copy())
+
+            }
+    }
         return super.onOptionsItemSelected(item)
     }
+
         }
 

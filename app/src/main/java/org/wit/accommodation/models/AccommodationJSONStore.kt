@@ -42,8 +42,31 @@ class AccommodationJSONStore(private val context: Context) : AccommodationStore 
 
 
     override fun update(accommodation: AccommodationModel) {
-        // todo
+        var foundAccommodation: AccommodationModel? =
+            accommodations.find { p -> p.id == accommodation.id }
+        if (foundAccommodation != null) {
+            foundAccommodation.price = accommodation.price
+            foundAccommodation.location = accommodation.location
+            foundAccommodation.rooms = accommodation.rooms
+            foundAccommodation.image = accommodation.image
+            foundAccommodation.lat = accommodation.lat
+            foundAccommodation.lng = accommodation.lng
+            foundAccommodation.zoom = accommodation.zoom
+            logAll()
+            serialize()
+
+        }
     }
+
+    override fun delete(accommodation: AccommodationModel) {
+        accommodations.remove(accommodation)
+        serialize()
+    }
+//    override fun update(accommodation: AccommodationModel) {
+//        // todo
+//    }
+
+
 
     private fun serialize() {
         val jsonString = gsonBuilder.toJson(accommodations, listType)
@@ -58,7 +81,22 @@ class AccommodationJSONStore(private val context: Context) : AccommodationStore 
     private fun logAll() {
         accommodations.forEach { Timber.i("$it") }
     }
+    override fun findOne(id: Long) : AccommodationModel? {
+        var foundAccommodation: AccommodationModel? = accommodations.find { c -> c.id == id }
+        return foundAccommodation
+    }
+    fun filteringPrice (price: Int): List<AccommodationModel> {
+        return accommodations.filter { p -> p.price == price }
+
+    }
+
+    override fun findPrice (price: Int) : AccommodationModel? {
+        var foundAccommodation: AccommodationModel? = accommodations.find { p -> p.price == price }
+        return foundAccommodation
+    }
+
 }
+
 
 class UriParser : JsonDeserializer<Uri>,JsonSerializer<Uri> {
     override fun deserialize(
