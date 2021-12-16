@@ -85,9 +85,12 @@ class AccommodationJSONStore(private val context: Context) : AccommodationStore 
         var foundAccommodation: AccommodationModel? = accommodations.find { c -> c.id == id }
         return foundAccommodation
     }
-    fun filteringPrice (price: Int): List<AccommodationModel> {
-        return accommodations.filter { p -> p.price == price }
+    override fun filteringPrice (price: Int): List<AccommodationModel> {
+        return accommodations.filter { p -> p.price <= price }
 
+    }
+    override fun filteringType(type: String): List<AccommodationModel> {
+        return accommodations.filter { p -> p.type.startsWith(type) }
     }
 
     override fun findPrice (price: Int) : AccommodationModel? {

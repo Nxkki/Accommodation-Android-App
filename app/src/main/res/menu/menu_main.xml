@@ -7,4 +7,22 @@
         android:icon="@android:drawable/ic_menu_add"
         android:title="@string/menu_addAccommodation"
         app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/action_searchType"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Search by Type"
+        android:queryHint="Search By Type"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Search By Price"
+        android:inputType="phone"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+
 </menu>

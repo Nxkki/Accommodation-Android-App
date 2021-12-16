@@ -33,6 +33,8 @@ class AccommodationAdapter constructor(private var accommodations: List<Accommod
             binding.accommodationLocation.text = accommodation.location
             binding.accommodationRooms.text = accommodation.rooms
             binding.accommodationPrice.text =  Integer.toString(accommodation.price)
+            binding.accommodationType.text =  accommodation.type
+
             Picasso.get().load(accommodation.image).resize(200,200).into(binding.imageIcon)
 
             binding.root.setOnClickListener { listener.onAccommodationClick(accommodation) }

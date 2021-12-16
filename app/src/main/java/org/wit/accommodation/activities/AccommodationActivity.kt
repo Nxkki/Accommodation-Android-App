@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ArrayAdapter
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
@@ -22,7 +23,10 @@ import org.wit.accommodation.models.OnMap
 import timber.log.Timber
 import timber.log.Timber.i
 
+
 class AccommodationActivity : AppCompatActivity() {
+    private lateinit var adapter: ArrayAdapter<*>
+
     private lateinit var binding: ActivityAccommodationBinding
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
@@ -44,7 +48,7 @@ class AccommodationActivity : AppCompatActivity() {
 
         binding.accommodationPrice.setText("0")
         var edit = false
-
+//adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, resources.getString() )
         app = application as MainApp
         i("Accommodation Activity started...")
         if (intent.hasExtra("accommodation_edit")) {
@@ -55,6 +59,7 @@ class AccommodationActivity : AppCompatActivity() {
             binding.accommodationPrice.setText("" + accommodation.price)
             binding.accommodationLocation.setText(accommodation.location)
             binding.accommodationRooms.setText(accommodation.rooms)
+            binding.accommodationType.setText(accommodation.type)
 
 //            binding.accommodationImage.isVisible
 //            i("adding image ")
@@ -73,6 +78,8 @@ class AccommodationActivity : AppCompatActivity() {
             var flag = false
             val accommodationLocation = binding.accommodationLocation.text.toString()
             val accommodationRooms = binding.accommodationRooms.text.toString()
+            val accommodationType = binding.accommodationType.text.toString()
+
             //accommodation.location = binding.accommodationLocation.text.toString()
             //  accommodation.rooms = binding.accommodationRooms.text.toString()
 
@@ -84,10 +91,10 @@ class AccommodationActivity : AppCompatActivity() {
                 accommodation.price = Integer.parseInt(binding.accommodationPrice.text.toString())
                 accommodation.location = accommodationLocation
                 accommodation.rooms = accommodationRooms
+                accommodation.type = accommodationType
 
                 flag = true
             }
-
 
             if (!flag) {
 //                accommodations.add(accommodation)
@@ -209,6 +216,8 @@ class AccommodationActivity : AppCompatActivity() {
     }
 
 
+
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_accommodation, menu)
         return super.onCreateOptionsMenu(menu)
@@ -220,6 +229,7 @@ class AccommodationActivity : AppCompatActivity() {
 
             R.id.item_delete -> {
                 app.accommodations.delete(accommodation.copy())
+                finish()
 
             }
     }

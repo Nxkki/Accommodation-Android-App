@@ -4,6 +4,7 @@
     <string name="hint_accommodationPrice">Accommodation Price</string>
     <string name="hint_accommodationLocation">Accommodation Location</string>
     <string name="hint_accommodationRooms">Accommodation Rooms</string>
+    <string name="hint_accommodationType">Accommodation Type</string>
     <string name="menu_addAccommodation">Add</string>
     <string name="menu_cancelAccommodation">Cancel</string>
     <string name="menu_deleteAccommodation">Delete</string>
@@ -15,5 +16,7 @@
     <string name="button_location">Set Location</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_map">Map</string>
+    <string name="search_hint">Type name…</string>
+
 </resources>
 

@@ -2,8 +2,13 @@ package org.wit.accommodation.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
+import timber.log.Timber.i
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.inputmethod.EditorInfo
+import androidx.appcompat.widget.SearchView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -33,12 +38,66 @@ class AccommodationListActivity : AppCompatActivity(), AccommodationListener {
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = AccommodationAdapter(app.accommodations.findAll(),this)
+
+
         loadAccommodations()
         registerRefreshCallback()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
         menuInflater.inflate(R.menu.menu_main, menu)
+        var searchItem=menu?.findItem(R.id.action_search)
+        var searchView=searchItem?.actionView as SearchView;
+
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if(query?.length!! <1)
+
+                    loadAccommodations()
+                else
+                    showAccommodations(app.accommodations.filteringPrice(Integer.parseInt(query)))
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                if(newText?.length!! >=1)
+                    showAccommodations(app.accommodations.filteringPrice(Integer.parseInt(newText)))
+                return false
+            }
+        })
+        val closeButton: View? = searchView.findViewById(androidx.appcompat.R.id.search_close_btn)
+        closeButton?.setOnClickListener {
+            loadAccommodations()        }
+
+
+        var searchItemType=menu?.findItem(R.id.action_searchType)
+        var searchViewType=searchItemType?.actionView as SearchView;
+
+        searchViewType.setImeOptions(EditorInfo.IME_ACTION_DONE)
+        searchViewType.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if(query?.length!! <1)
+
+                    loadAccommodations()
+                else
+                    showAccommodations(app.accommodations.filteringType(query))
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if(newText?.length!! >=1)
+                    showAccommodations(app.accommodations.filteringType(newText))
+                return false
+            }
+        })
+        val closeButtonType: View? = searchViewType.findViewById(androidx.appcompat.R.id.search_close_btn)
+        closeButtonType?.setOnClickListener {
+            loadAccommodations()        }
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -73,3 +132,4 @@ class AccommodationListActivity : AppCompatActivity(), AccommodationListener {
         binding.recyclerView.adapter?.notifyDataSetChanged()
     }
 }
+

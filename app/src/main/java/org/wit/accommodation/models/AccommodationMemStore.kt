@@ -1,6 +1,7 @@
 package org.wit.accommodation.models
 
 
+import timber.log.Timber
 import timber.log.Timber.i
 
 
@@ -38,6 +39,15 @@ class AccommodationMemStore : AccommodationStore {
             logAll()
         }
     }
+    override fun filteringPrice (price: Int): List<AccommodationModel> {
+        return accommodations.filter { p -> p.price == price }
+
+    }
+
+    override fun filteringType(type: String): List<AccommodationModel> {
+        return accommodations.filter { p -> p.type.startsWith(type) }
+    }
+
 
     override fun delete(accommodation: AccommodationModel) {
         accommodations.remove(accommodation)
