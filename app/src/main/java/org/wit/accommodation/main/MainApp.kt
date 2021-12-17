@@ -22,5 +22,7 @@ lateinit var accommodations: AccommodationStore
         accommodations = AccommodationJSONStore(applicationContext)
 
         i("Accommodation started")
+
+
     }
 }

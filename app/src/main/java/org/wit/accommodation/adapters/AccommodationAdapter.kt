@@ -9,7 +9,7 @@ import org.wit.accommodation.databinding.CardAccommodationBinding
 import org.wit.accommodation.models.AccommodationModel
 
 class AccommodationAdapter constructor(private var accommodations: List<AccommodationModel>,
-                                   private val listener: AccommodationListener) :
+                                       private val listener: AccommodationListener) :
     RecyclerView.Adapter<AccommodationAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {

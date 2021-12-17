@@ -17,6 +17,10 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_map">Map</string>
     <string name="search_hint">Type name…</string>
+    <string name="title_activity_starter">StarterActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_list">Accomodation List</string>
+    <string name="title_notifications">About</string>
 
 </resources>
 

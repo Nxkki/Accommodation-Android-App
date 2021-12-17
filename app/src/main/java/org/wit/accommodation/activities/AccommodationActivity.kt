@@ -52,7 +52,7 @@ class AccommodationActivity : AppCompatActivity() {
         app = application as MainApp
         i("Accommodation Activity started...")
         if (intent.hasExtra("accommodation_edit")) {
-             edit = true
+            edit = true
             accommodation = intent.extras?.getParcelable("accommodation_edit")!!
 //            binding.accommodationPrice.setText(String.valueOf(accommodation.price))
 //            setText(accommodation.price)
@@ -203,7 +203,7 @@ class AccommodationActivity : AppCompatActivity() {
                 if (data != null) {
                     i(data.getData().toString())
                     accommodation.image = data.data!!
-                     i(accommodation.image.toString())
+                    i(accommodation.image.toString())
                     Picasso.get()
                         .load(accommodation.image.toString())
                         .into(binding.accommodationImage)
@@ -232,9 +232,8 @@ class AccommodationActivity : AppCompatActivity() {
                 finish()
 
             }
-    }
+        }
         return super.onOptionsItemSelected(item)
     }
 
-        }
-
+}

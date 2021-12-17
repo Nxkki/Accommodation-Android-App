@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_menu_slideshow.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1109375" />
         <entry key="app/src/main/res/layout/activity_accommodation.xml" value="0.1" />
@@ -10,9 +11,23 @@
         <entry key="app/src/main/res/layout/activity_accommodation_list.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_map.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_starter.xml" value="0.15839243498817968" />
+        <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/card_accommodation.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/drawer_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.1671875" />
+        <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1654320987654321" />
+        <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.1671875" />
+        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.16197916666666667" />
+        <entry key="app/src/main/res/layout/intro.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/layout.xml" value="0.165625" />
+        <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/trying.xml" value="0.24041811846689895" />
+        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.1251700680272109" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.15260416666666668" />
+        <entry key="app/src/main/res/menu/main.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu_accommodation.xml" value="0.2861111111111111" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.375" />
         <entry key="app/src/main/res/menu/menu_placemark.xml" value="0.1" />

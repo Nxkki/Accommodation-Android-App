@@ -98,6 +98,8 @@ class AccommodationListActivity : AppCompatActivity(), AccommodationListener {
         val closeButtonType: View? = searchViewType.findViewById(androidx.appcompat.R.id.search_close_btn)
         closeButtonType?.setOnClickListener {
             loadAccommodations()        }
+
+
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -131,5 +133,6 @@ class AccommodationListActivity : AppCompatActivity(), AccommodationListener {
         binding.recyclerView.adapter = AccommodationAdapter(accommodations, this)
         binding.recyclerView.adapter?.notifyDataSetChanged()
     }
+
 }
 

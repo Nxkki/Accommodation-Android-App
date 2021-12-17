@@ -2,10 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.wit.accommodation">
 
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".main.MainApp"
@@ -16,6 +15,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Accommodation">
 
+        <activity
+            android:name=".activities.StarterActivity"
+            android:label="@string/title_activity_starter"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -23,15 +34,13 @@
         <activity
             android:name=".activities.MapActivity"
             android:label="@string/title_activity_map" />
+
         <activity
             android:name=".activities.AccommodationListActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.AccommodationActivity" />
     </application>
+
 </manifest>
