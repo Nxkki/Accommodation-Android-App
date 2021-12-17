@@ -20,7 +20,7 @@
     <string name="title_activity_starter">StarterActivity</string>
     <string name="title_home">Home</string>
     <string name="title_list">Accomodation List</string>
-    <string name="title_notifications">About</string>
+    <string name="title_about">About</string>
 
 </resources>
 
